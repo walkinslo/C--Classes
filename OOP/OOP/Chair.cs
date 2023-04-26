@@ -3,25 +3,30 @@ namespace OOP
 {
 	public class Chair
 	{
-        public string Color { get; set; }
+        public string Name { get; set; }
         public string Material { get; set; }
         public int Height { get; set; }
+        public double Price { get; set; }
+        public bool IsAvaliable { get; set; }
         
-        public void UpdateColor(string newColor)
+        public Chair(
+            string name,
+            string material,
+            int height,
+            double price,
+            bool isAvaliable
+            )
         {
-            this.Color = newColor;
+            Name = name;
+            Material = material;
+            Height = height;
+            Price = price;
+            IsAvaliable = isAvaliable;
         }
 
-        public void UpdateHeight(int newHeight)
+        public override string ToString()
         {
-            this.Height = newHeight;
-        }
-
-        public void PrintDetails()
-        {
-            Console.WriteLine($"Color: {this.Color}");
-            Console.WriteLine($"Material: {this.Material}");
-            Console.WriteLine($"Height: {this.Height}");
+            return $"Название: {Name}, Цена: {Price}, Материал: {Material}, Высота: {Height}, Наличие: {(IsAvaliable ? "В наличии":" Нет в наличии")}";
         }
     }
 }
