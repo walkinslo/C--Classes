@@ -9,68 +9,74 @@ namespace OOP
         {
             Shop shop = new Shop("Магазин стульев", new List<Chair>());
 
-            string name = Prompt.Input<string>("Название стула: ");
-            string material;
-            int height;
-            double price;
-            bool isAvaliable;
+            while (true) {
 
+                Menu();
 
-            shop.addChair
-            (
-                new Chair
-                (
-                    "Стул №1",
-                    "Дерево",
-                    80,
-                    1599.99,
-                    true
-                )
-            );
-            System.Threading.Thread.Sleep(1000);
-            shop.addChair
-            (
-                new Chair
-                (
-                    "Стул №2",
-                    "Пластик",
-                    80,
-                    599.99,
-                    false
-                )
-            );
-            System.Threading.Thread.Sleep(1000);
-            shop.addChair
-            (
-                new Chair
-                (
-                    "Стул №3",
-                    "Металл",
-                    50,
-                    1299.99,
-                    true
-                )
-            );
+                int choice = int.Parse(Console.ReadLine());
 
-            shop.printChairs();
+                switch (choice)
+                {
+                    case 1:
+                        shop.addChair(Add());
+                        Menu();
+                        return;
+                    case 5:
+                        break;
+                }
+            }
 
-            shop.updateChair
-            (
-                    1,
-                    "Стул №2 (обновленный)",
-                    "Пластик",
-                    80,
-                    599.99,
-                    true
-            );
-            System.Threading.Thread.Sleep(1000);
-
-            shop.RemoveChair(2);
-
-            System.Threading.Thread.Sleep(500);
-            shop.printChairs();
         }
 
+        static Chair Add()
+        {
+            string name = Prompt.Input<string>("Название стула");
+            string material = Prompt.Input<string>("Из чего он сделан");
+            int height = Prompt.Input<int>("Высота стула (в см)");
+            double price = Prompt.Input<double>("Цена (в рублях)");
+            bool isAvaliable = _IsAvaliable();
+
+            Shop shop = new Shop("Магазин стульев", new List<Chair>());
+
+            return new Chair
+                (
+                    name,
+                    material,
+                    height,
+                    price,
+                    isAvaliable
+                );
+        }
+
+        static bool _IsAvaliable()
+        {
+            bool isAvaliable;
+
+            var temp = Prompt.Select("Доступность: ", new[] { "В наличии", "Не в наличии" });
+            if (temp == "В наличии")
+            {
+                isAvaliable = true;
+
+            }
+            else
+            {
+                isAvaliable = false;
+            }
+
+            return isAvaliable;
+        }
+
+        static void Menu()
+        {
+            Console.WriteLine
+                    ("Что вы хотите сдлеать?\n" +
+                    "1: Добавить стул\n" +
+                    "2: Удалить стул\n" +
+                    "3: Изменить стул\n" +
+                    "4: Посмотреть все стулья\n" +
+                    "5: Выйти"
+                    );
+        }
     }
 
 }
