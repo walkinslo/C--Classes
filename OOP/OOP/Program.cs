@@ -15,15 +15,27 @@ namespace OOP
 
                 int choice = int.Parse(Console.ReadLine());
 
-                switch (choice)
+                if (choice == 1)
                 {
-                    case 1:
-                        shop.addChair(Add());
-                        Menu();
-                        return;
-                    case 5:
-                        break;
+                    shop.addChair(Add());
                 }
+                else if (choice == 2)
+                {
+                    shop.removeChair(Remove());
+                }
+                else if (choice == 3)
+                {
+                    shop.updateChair();
+                }
+                else if (choice == 4)
+                {
+                    shop.printChairs();
+                }
+                else // [5]
+                {
+                    break;
+                }
+
             }
 
         }
@@ -48,7 +60,16 @@ namespace OOP
                 );
         }
 
-        static bool _IsAvaliable()
+        static int Remove()
+        {
+            Console.WriteLine("Какой стул вы хотите удалить?\n");
+
+            int index = int.Parse(Console.ReadLine());
+
+            return index;
+        }
+
+        public static bool _IsAvaliable()
         {
             bool isAvaliable;
 
@@ -56,7 +77,6 @@ namespace OOP
             if (temp == "В наличии")
             {
                 isAvaliable = true;
-
             }
             else
             {
@@ -69,12 +89,12 @@ namespace OOP
         static void Menu()
         {
             Console.WriteLine
-                    ("Что вы хотите сдлеать?\n" +
+                    ("\n" + "Что вы хотите сделать?\n" +
                     "1: Добавить стул\n" +
                     "2: Удалить стул\n" +
                     "3: Изменить стул\n" +
                     "4: Посмотреть все стулья\n" +
-                    "5: Выйти"
+                    "5: Выйти" + "\n"
                     );
         }
     }

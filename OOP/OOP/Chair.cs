@@ -1,12 +1,9 @@
 ﻿using System;
 namespace OOP
 {
-	public class Chair
+	public class Chair : FurnitureItem
 	{
-        public string Name { get; set; }
-        public string Material { get; set; }
         public int Height { get; set; }
-        public double Price { get; set; }
         public bool IsAvaliable { get; set; }
         
         public Chair(
@@ -15,18 +12,19 @@ namespace OOP
             int height,
             double price,
             bool isAvaliable
-            )
+            ) : base(name, material, price)
         {
-            Name = name;
-            Material = material;
             Height = height;
-            Price = price;
             IsAvaliable = isAvaliable;
         }
 
         public override string ToString()
         {
-            return $"Название: {Name}, Цена: {Price}, Материал: {Material}, Высота: {Height}, Наличие: {(IsAvaliable ? "В наличии":" Нет в наличии")}";
+            return $"\n[Название]: {Name},\n" +
+                $"[Цена]: {Price},\n" +
+                $"[Материал]: {Material},\n" +
+                $"[Высота]: {Height},\n" +
+                $"[Наличие]: {(IsAvaliable ? "В наличии":" Нет в наличии")}";
         }
     }
 }

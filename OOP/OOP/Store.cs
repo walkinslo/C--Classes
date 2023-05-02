@@ -1,12 +1,13 @@
 ﻿using System;
+using Sharprompt;
+
 namespace OOP
 {
-    class Shop
+    class Shop : FurnitureItem
     {
-        public string Name { get; set; }
         public List<Chair> Chairs { get; set; }
 
-        public Shop(string name, List<Chair> chairs)
+        public Shop(string name, List<Chair> chairs) : base(name, "", 0)
         {
             Name = name;
             Chairs = chairs;
@@ -15,10 +16,10 @@ namespace OOP
         public void addChair(Chair chair)
         {
             Chairs.Add(chair);
-            Console.WriteLine($"Стул \"{chair}\" успешно добавлен   .");
+            Console.WriteLine($"\nСтул {chair}  успешно добавлен.");
         }
 
-        public void RemoveChair(int index)
+        public void removeChair(int index)
         {
             if (index < 0 || index >= Chairs.Count)
             {
@@ -31,23 +32,23 @@ namespace OOP
             Console.WriteLine($"Стул \"{removedChair}\" успешно удален.");
         }
 
-        public void updateChair(
-            int index,
-            string name,
-            string material,
-            int height,
-            double price,
-            bool isAvaliable
-            )
+        public void updateChair()
         {
-            Chair updatedChair = Chairs[index];
-            updatedChair.Name = name;
-            updatedChair.Material = material;
-            updatedChair.Height = height;
-            updatedChair.Price = price;
-            updatedChair.IsAvaliable = isAvaliable;
 
-            Console.WriteLine($"Данные о стуле \"{Name}\" успешно обновлены");
+            int index = Prompt.Input<int>("Введите индекс стула");
+            string name = Prompt.Input<string>("Название стула");
+            string material = Prompt.Input<string>("Из чего он сделан");
+            int height = Prompt.Input<int>("Высота стула (в см)");
+            double price = Prompt.Input<double>("Цена (в рублях)");
+            bool isAvaliable = Program._IsAvaliable();
+
+            Chairs[index].Name = name;
+            Chairs[index].Material = material;
+            Chairs[index].Height = height;
+            Chairs[index].Price = price;
+            Chairs[index].IsAvaliable = isAvaliable;
+
+            Console.WriteLine($"\nДанные о стуле \"{Chairs[index]}\" успешно обновлены");
 
         }
 
