@@ -8,36 +8,40 @@ namespace OOP
         static void Main(string[] args)
         {
             Shop shop = new Shop("Магазин стульев", new List<Chair>());
+            bool Done = false;
 
-            while (true) {
+            while (!Done) {
 
                 Menu();
 
-                int choice = int.Parse(Console.ReadLine());
+                string userInput = Console.ReadLine();
+                int parsedValue;
 
-                if (choice == 1)
-                {
-                    shop.addChair(Add());
+                if (!Int32.TryParse(userInput, out parsedValue)) {
+                    Console.WriteLine("Такого пункта нет.");
+                } else {
+                    switch (parsedValue)
+                    {
+                        case 1:
+                            shop.addChair(Add());
+                            break;
+                        case 2:
+                            shop.removeChair(Remove());
+                            break;
+                        case 3:
+                            shop.updateChair();
+                            break;
+                        case 4:
+                            shop.printChairs();
+                            break;
+                        case 5:
+                            Done = true;
+                            break;
+                        default:
+                            break;
+                    }
                 }
-                else if (choice == 2)
-                {
-                    shop.removeChair(Remove());
-                }
-                else if (choice == 3)
-                {
-                    shop.updateChair();
-                }
-                else if (choice == 4)
-                {
-                    shop.printChairs();
-                }
-                else // [5]
-                {
-                    break;
-                }
-
             }
-
         }
 
         static Chair Add()
@@ -66,7 +70,7 @@ namespace OOP
 
             int index = int.Parse(Console.ReadLine());
 
-            return index;
+            return (int)index;
         }
 
         public static bool _IsAvaliable()

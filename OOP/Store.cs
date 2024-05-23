@@ -16,7 +16,7 @@ namespace OOP
         public void addChair(Chair chair)
         {
             Chairs.Add(chair);
-            Console.WriteLine($"\nСтул {chair}  успешно добавлен.");
+            Console.WriteLine($"\nСтул {chair} успешно добавлен.");
         }
 
         public void removeChair(int index)

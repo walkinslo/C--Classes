@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 namespace OOP
 {
 	public class Chair : FurnitureItem
 	{
         public int Height { get; set; }
         public bool IsAvaliable { get; set; }
-        
+
         public Chair(
             string name,
             string material,
@@ -28,4 +28,3 @@ namespace OOP
         }
     }
 }
-
